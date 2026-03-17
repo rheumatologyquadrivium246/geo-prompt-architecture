@@ -1,6 +1,6 @@
 ---
 name: geo-prompt-architecture
-description: Use when the user wants to generate, structure, score, or audit GEO monitoring prompts for a client. Trigger when building prompt sets from a website, brand, market, customer, product lines, and competitors; when balancing non-brand, comparison, and brand-defense prompts; or when turning AI visibility monitoring results into prompt and content optimization actions.
+description: Use when the user wants to generate, structure, score, or audit GEO monitoring prompts for a client. Trigger when building topic-first prompt sets from a website, brand, market, customer, product lines or inferred topics, and competitors; when balancing non-brand, comparison, and brand-defense prompts; or when turning AI visibility monitoring results into prompt and content optimization actions.
 ---
 
 # GEO Prompt Architecture
@@ -9,7 +9,7 @@ Build GEO prompt systems that fit the client’s real business, not generic keyw
 
 ## Overview
 
-Use this skill to generate and audit AI visibility monitoring prompts for GEO programs. It turns a client brief into a prompt architecture across non-brand discovery, competitor comparison, and brand defense, then helps translate monitoring results into concrete optimization actions.
+Use this skill to generate and audit AI visibility monitoring prompts for GEO programs. It turns a client brief into a `topic -> prompt` architecture across non-brand discovery, competitor comparison, and brand defense, then helps translate monitoring results into concrete optimization actions.
 
 When the work needs structured product inputs or outputs, use the JSON schemas in `schemas/`.
 When the client model is unclear or highly verticalized, use the examples in `examples/` and the playbooks in `references/`.
@@ -18,7 +18,7 @@ When the client model is unclear or highly verticalized, use the examples in `ex
 
 - GEO software teams onboarding new clients
 - GEO agencies building prompt sets at scale
-- operators who need better prompt coverage by product line and funnel stage
+- operators who need better prompt coverage by topic, product line, and funnel stage
 - teams that want to rebalance prompt libraries away from brand-heavy bias
 - teams that want monitoring prompts tied to later content and asset optimization
 
@@ -41,19 +41,27 @@ Use $geo-prompt-architecture to turn these monitoring results into prompt and co
 This skill can work from a pasted brief, screenshots, exports, or a website URL.
 
 - no private credentials are required for basic prompt generation or review
-- live browsing is helpful when the client website, product lines, or competitor overlap must be validated
+- live browsing is helpful when the client website, topics, product lines, or competitor overlap must be validated
 - do not assume access to analytics, Search Console, CRM, AI monitoring dashboards, or private docs unless explicitly provided
 
 ## Core Model
 
-Always frame GEO prompts as a three-layer system:
+Always frame GEO prompts as a `topic-first` system:
 
-1. `Non-brand discovery`
+1. `Topic map`
+   Decide which problem spaces, categories, use cases, trust questions, competitor clusters, channels, and seasonal themes deserve monitoring.
+2. `Non-brand discovery`
    Users do not know the brand yet. These prompts measure whether the brand can enter new answer spaces.
-2. `Competitor comparison`
+3. `Competitor comparison`
    Users are comparing brands, alternatives, or solution routes. These prompts measure competitive visibility.
-3. `Brand defense`
+4. `Brand defense`
    Users already know the brand and are validating fit, quality, pricing, sizing, shipping, returns, or worth. These prompts measure narrative control and decision-stage performance.
+
+Topic sources can be:
+
+- user-provided priority topics
+- product lines turned into topic seeds
+- inferred topics generated from the website, business model, use cases, competitors, channels, and weak AI surfaces
 
 Default target mix:
 
@@ -72,7 +80,8 @@ Before generating prompts, identify:
 - business model
 - market and language
 - target customer
-- core product lines
+- user-provided topics, if any
+- core product lines, if any
 - conversion path
 - key competitors
 - weak AI surfaces, if provided
@@ -83,6 +92,7 @@ Useful business-model labels:
 - ecommerce / DTC
 - services / consultancy
 - marketplace / aggregator
+- manufacturer / supplier
 - content / media
 
 If inputs are incomplete, infer carefully and label the inference.
@@ -91,10 +101,45 @@ If the user wants a standard onboarding shape, use [schemas/client-brief.schema.
 
 If the business model is ambiguous, read [references/vertical-templates.md](references/vertical-templates.md) and compare against the sample cases in:
 
+- [examples/coofandy-topic-first-output.md](examples/coofandy-topic-first-output.md)
 - [examples/trip-com-consumer-travel-marketplace.md](examples/trip-com-consumer-travel-marketplace.md)
 - [examples/movinghead-stage-lighting.md](examples/movinghead-stage-lighting.md)
 
-### 2. Map the funnel
+### 2. Build the topic map
+
+Do not jump straight into prompts.
+
+First, build a topic map that explains what the monitoring system should cover.
+
+Priority order:
+
+1. normalize user-provided topics
+2. turn product lines into topic seeds
+3. infer missing topics from:
+   - use cases
+   - audience segments
+   - competitor overlap
+   - trust and evaluation questions
+   - channels and marketplaces
+   - seasonality and trend patterns
+
+Useful topic types:
+
+- product/category
+- use-case
+- audience/segment
+- competitor/alternative
+- trust/evaluation
+- channel/marketplace
+- seasonal/trend
+
+Every output should make it clear whether a topic is:
+
+- `provided`
+- `derived-from-product-line`
+- `inferred`
+
+### 3. Map the funnel
 
 Prompt sets must cover the funnel, not just high-intent terms:
 
@@ -107,13 +152,21 @@ Prompt sets must cover the funnel, not just high-intent terms:
 
 Read [references/prompt-framework.md](references/prompt-framework.md) when you need the full generation framework.
 
-### 3. Generate prompt sets by product line
+### 4. Generate prompt sets by topic
 
-When the user gives multiple product lines, generate a prompt set for each product line. Keep the layers separate:
+Generate prompts inside each topic. Keep the layers separate:
 
 - non-brand discovery prompts
 - competitor comparison prompts
 - brand defense prompts
+
+If product lines exist, use them as one grouping dimension, but do not treat them as mandatory. Some clients need prompt sets grouped by:
+
+- topic
+- business problem
+- audience segment
+- marketplace channel
+- competitor cluster
 
 Prompt rules:
 
@@ -122,11 +175,14 @@ Prompt rules:
 - include scenarios, constraints, audiences, budgets, regions, or channels when useful
 - avoid low-value navigational brand variants
 
-### 4. Add GEO judgment, not just prompts
+### 5. Add GEO judgment, not just prompts
 
 For each prompt, include enough structure to make the set operational. Default fields:
 
 - prompt
+- topic
+- topic_source
+- topic_type
 - layer
 - funnel stage
 - category
@@ -145,7 +201,7 @@ If the user wants a product-ready response shape, use:
 - [schemas/prompt-set-output.schema.json](schemas/prompt-set-output.schema.json)
 - [schemas/prompt-scorecard.schema.json](schemas/prompt-scorecard.schema.json)
 
-### 5. Audit and rewrite existing prompt sets
+### 6. Audit and rewrite existing prompt sets
 
 When reviewing an existing prompt list, do not regenerate everything by default. For each prompt:
 
@@ -157,14 +213,16 @@ When reviewing an existing prompt list, do not regenerate everything by default.
 
 Common failure modes:
 
+- no topic map before prompt generation
 - too many brand prompts
 - no comparison prompts
 - no true non-brand discovery prompts
 - off-funnel or synthetic phrasing
 - prompts that fit search engines better than AI answers
 - prompts that mismatch the client’s real product line or market
+- prompts that cluster around one topic while ignoring the real topic surface
 
-### 6. Reverse-optimize from monitoring results
+### 7. Reverse-optimize from monitoring results
 
 When the user brings AI monitoring results, use them to improve both content and the prompt library.
 
@@ -191,25 +249,27 @@ Read [references/scoring-model.md](references/scoring-model.md) when the user wa
 Default output order:
 
 1. client model summary
-2. prompt strategy by layer
-3. prompt set by product line
-4. priority prompts
-5. optional reverse-optimization actions
+2. topic map
+3. prompt strategy by layer
+4. prompt set by topic
+5. priority prompts
+6. optional reverse-optimization actions
 
 When auditing, prefer tables like:
 
 | Original | Action | Final | Reason |
 |---|---|---|---|
-| Prompt A | Keep | Prompt A | Fits the product line and funnel |
+| Prompt A | Keep | Prompt A | Fits the topic, product line, and funnel |
 | Prompt B | Optimize | Better Prompt B | Original is too generic or too brand-heavy |
 | Prompt C | Delete | — | Low monitoring value |
 
 ## Guardrails
 
 - Do not treat prompt generation as generic keyword research.
+- Do not skip topic generation just because the client did not provide topics.
 - Do not over-index on brand terms.
 - Do not collapse every prompt into bottom-funnel buying language.
-- Do not invent product lines, channels, or competitors without labeling the inference.
+- Do not invent product lines, topics, channels, or competitors without labeling the inference.
 - Do not assume every prompt should become an article; some should map to category pages, comparison pages, FAQs, reviews, or marketplace listings.
 - When the user asks for monitoring prompts, bias toward prompts that can reveal visibility movement over time.
 - Do not apply an ecommerce prompt pattern to a marketplace, SaaS, or industrial manufacturer without checking business-model fit first.

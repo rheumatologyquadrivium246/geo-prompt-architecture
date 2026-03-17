@@ -1,8 +1,8 @@
 # GEO Prompt Architecture
 
-Generate the most suitable GEO monitoring prompts for each client’s business, so monitoring can lead to sharper optimization.
+Generate the most suitable GEO monitoring prompts for each client’s business, starting from the right topics so monitoring can lead to sharper optimization.
 
-`GEO Prompt Architecture` is an open-source skill and repo for GEO teams, agencies, and operators who need more than a flat prompt list. It turns a client brief into a prompt operating system across discovery, comparison, and brand-defense layers, then helps feed monitoring results back into content and asset decisions.
+`GEO Prompt Architecture` is an open-source skill and repo for GEO teams, agencies, and operators who need more than a flat prompt list. It turns a client brief into a `topic -> prompt` operating system across discovery, comparison, and brand-defense layers, then helps feed monitoring results back into content and asset decisions.
 
 Maintained by [Dageno.ai](https://dageno.ai), a GEO-focused platform for turning AI visibility signals into actionable marketing workflows.
 
@@ -14,6 +14,7 @@ Most GEO prompt generation is still too generic.
 
 Teams often produce:
 
+- no explicit topic map before prompts
 - too many branded prompts
 - too few real discovery prompts
 - weak competitor comparison coverage
@@ -26,6 +27,7 @@ That creates a false sense of AI visibility. A brand may look visible on branded
 
 This repo helps teams produce prompts that are:
 
+- better structured by topic before prompt expansion
 - better matched to the client’s real business
 - better matched to how people ask AI tools questions
 - better structured for long-term monitoring
@@ -38,14 +40,42 @@ In plain English: it helps you create prompts that are worth monitoring and wort
 - a root `SKILL.md` for Codex-style use
 - a GitHub-ready social preview asset in `assets/`
 - input and output `schemas/` for productizing prompt generation
-- `references/` for prompt architecture, vertical playbooks, scoring, and reverse optimization
+- `references/` for prompt architecture, vertical playbooks, scoring, reverse optimization, and the final generator prompt
 - a lightweight GitHub launch checklist in `references/`
-- `examples/` that show how prompt strategy changes by business type
+- `examples/` that show how topic strategy changes by business type
 - `agents/openai.yaml` metadata for skill UI usage
 
 ## Core Operating Model
 
 This repo treats prompt generation as a system, not a keyword dump.
+
+The core hierarchy is:
+
+`business model -> topic map -> prompt layers -> funnel stages -> monitoring set`
+
+Product lines are one valid way to seed topics, but they are not required.
+
+If the client gives:
+
+- `priority topics`, normalize and expand them
+- `product lines`, turn them into topic seeds
+- neither, infer topics from the website, business model, use cases, competitors, channels, and weak AI surfaces
+
+That matters because strong GEO monitoring starts with the right topic universe, not just the right prompt phrasing.
+
+### 0. Topic map
+
+Use topics to define what the monitoring system should care about before writing prompts.
+
+Typical topic types:
+
+- product or category topics
+- use-case topics
+- audience or segment topics
+- competitor and alternative topics
+- trust and evaluation topics
+- channel and marketplace topics
+- seasonal or trend topics
 
 ### 1. Non-brand discovery
 
@@ -69,6 +99,7 @@ Recommended default mix:
 
 Prompt architecture shapes everything downstream:
 
+- which topics you monitor in the first place
 - what you monitor
 - what you learn from AI answers
 - what content you create next
@@ -124,6 +155,20 @@ That means the prompt set should lean toward technical category discovery, suppl
 
 See [movinghead-stage-lighting.md](/Users/timlin/Downloads/knowledge/projects/geo-prompt-architecture-repo/examples/movinghead-stage-lighting.md).
 
+### Coofandy
+
+`Coofandy` is best understood as an `ecommerce / marketplace-led men's apparel brand` with strong overlap across Amazon, Walmart, and direct-response product discovery.
+
+That means the system should use product lines as topic seeds, then expand them into broader topics such as fit, fabric, occasion, seasonality, marketplace trust, and competitor overlap.
+
+| Topic | Topic Source | Example Prompts |
+|---|---|---|
+| summer business-casual shirts | derived-from-product-line | `What are the best men's shirts for hot weather that still look business casual?`<br>`Are Coofandy men's shirts good for business casual offices in hot weather?` |
+| vacation-ready 2 piece sets | derived-from-product-line | `What are the best men's 2 piece sets for vacation and resort wear?`<br>`Coofandy vs Zara for men's 2 piece sets: which is better for summer vacations?` |
+| Amazon / Walmart purchase confidence | inferred | `What are the best men's clothing brands on Amazon for business casual and vacation wear?`<br>`Should I buy Coofandy from Amazon, Walmart, or the official site?` |
+
+See [coofandy-topic-first-output.md](/Users/timlin/Downloads/knowledge/projects/geo-prompt-architecture-repo/examples/coofandy-topic-first-output.md).
+
 ## What Makes This Repo More Useful Than A Generic Prompt List
 
 ### Structured inputs
@@ -133,6 +178,10 @@ See [movinghead-stage-lighting.md](/Users/timlin/Downloads/knowledge/projects/ge
 ### Structured outputs
 
 `schemas/prompt-set-output.schema.json` and `schemas/prompt-scorecard.schema.json` make it easier to connect prompt generation to products, dashboards, and QA workflows.
+
+### Final generator prompt
+
+`references/final-topic-first-generator-prompt.md` gives teams a ready-to-run prompt that matches the repo's topic-first architecture.
 
 ### Vertical playbooks
 
@@ -149,12 +198,13 @@ See [movinghead-stage-lighting.md](/Users/timlin/Downloads/knowledge/projects/ge
 ## Typical Workflow
 
 1. Capture the client brief in a standard schema
-2. Reconstruct the business model, market, audience, product lines, and competitors
-3. Generate prompts across discovery, comparison, and brand-defense layers
-4. Map prompts to funnel stages
-5. Score the prompt set for coverage and quality
-6. Monitor AI answers
-7. Feed answer losses back into content and prompt optimization
+2. Reconstruct the business model, market, audience, product lines, topics, and competitors
+3. Build a topic map from provided topics, product-line seeds, and inferred opportunity clusters
+4. Generate prompts inside each topic across discovery, comparison, and brand-defense layers
+5. Map prompts to funnel stages
+6. Score the prompt set for topic coverage, layer balance, and quality
+7. Monitor AI answers
+8. Feed answer losses back into content and prompt optimization
 
 ## Example Skill Usage
 
@@ -183,9 +233,11 @@ Use $geo-prompt-architecture to turn these AI visibility monitoring results into
 │   ├── social-preview.png
 │   └── social-preview.svg
 ├── examples/
+│   ├── coofandy-topic-first-output.md
 │   ├── trip-com-consumer-travel-marketplace.md
 │   └── movinghead-stage-lighting.md
 ├── references/
+│   ├── final-topic-first-generator-prompt.md
 │   ├── prompt-framework.md
 │   ├── reverse-optimization.md
 │   ├── scoring-model.md
@@ -211,8 +263,9 @@ Or use it as a public repo and package it through your own skill publishing work
 
 A strong run of this repo should produce:
 
-- prompts grouped by product line
+- prompts grouped by topic first, then optionally by product line
 - prompts grouped by layer and funnel
+- clearer topic coverage before prompt expansion
 - fewer low-value branded prompts
 - stronger competitor comparison coverage
 - more business-model fit
@@ -229,6 +282,7 @@ Natural next steps:
 - automated prompt-set scoring scripts
 - benchmark prompt libraries by industry
 - tighter JSON outputs for product workflows
+- topic clustering and topic QA helpers
 - stronger reverse-optimization playbooks by AI surface
 
 ## Open Source

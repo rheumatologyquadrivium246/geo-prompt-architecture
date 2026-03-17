@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.com/schemas/client-brief.schema.json",
   "title": "GEO Client Brief",
-  "description": "Structured onboarding input for generating GEO monitoring prompts.",
+  "description": "Structured onboarding input for generating topic-first GEO monitoring prompts.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -10,8 +10,7 @@
     "website_url",
     "business_model",
     "target_markets",
-    "target_customers",
-    "core_product_lines"
+    "target_customers"
   ],
   "properties": {
     "brand_name": {
@@ -54,9 +53,47 @@
         "type": "string"
       }
     },
+    "priority_topics": {
+      "type": "array",
+      "description": "Optional user-provided topics to seed prompt generation.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "topic_type": {
+            "type": "string",
+            "enum": [
+              "product-category",
+              "use-case",
+              "audience-segment",
+              "competitor-alternative",
+              "trust-evaluation",
+              "channel-marketplace",
+              "seasonal-trend",
+              "other"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "seed_keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
     "core_product_lines": {
       "type": "array",
-      "minItems": 1,
+      "description": "Optional product lines that can be converted into topic seeds.",
       "items": {
         "type": "object",
         "additionalProperties": false,

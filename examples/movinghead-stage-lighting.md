@@ -29,6 +29,16 @@ So the GEO prompt set should focus on:
 - competitor comparison around supplier, manufacturer, and product-line overlap
 - brand-defense prompts around quality, specs, support, certifications, and fulfillment
 
+## Derived Topic Map
+
+| Topic | Topic Type | Topic Source | Why This Topic Exists |
+|---|---|---|---|
+| beam, wash, and spot fixture selection | product-category | inferred | Core category education and entry topic. |
+| venue and event production use cases | use-case | inferred | Buyers often search by installation or event context. |
+| OEM, bulk order, and export sourcing | audience-segment | inferred | High-value B2B procurement topic. |
+| manufacturer alternatives to premium brands | competitor-alternative | inferred | Important comparison space for mid-market supplier discovery. |
+| certifications, lead time, and reliability | trust-evaluation | inferred | Critical brand-defense topic for supplier confidence. |
+
 ## Suggested Prompt Bias
 
 - discovery prompts for beam, wash, spot, and application-based lighting needs

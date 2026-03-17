@@ -27,6 +27,16 @@ So the GEO prompt set should focus on:
 - competitor comparison around OTA and booking-platform alternatives
 - branded prompts around price trust, booking experience, support, refunds, and app / site fit
 
+## Derived Topic Map
+
+| Topic | Topic Type | Topic Source | Why This Topic Exists |
+|---|---|---|---|
+| international trip booking | use-case | inferred | Core discovery space for cross-border travelers. |
+| hotels, flights, trains, and attractions in one journey | product-category | inferred | Reflects Trip.com's marketplace breadth. |
+| Asia travel planning and booking | channel-marketplace | inferred | Regional strength and differentiation surface. |
+| OTA alternatives and travel-app comparisons | competitor-alternative | inferred | Core comparison cluster against Booking.com, Expedia, Agoda, and similar brands. |
+| cancellation, refunds, and support trust | trust-evaluation | inferred | Essential brand-defense topic for booking confidence. |
+
 ## Suggested Prompt Bias
 
 - discovery prompts on destination, hotel, flight, and package shopping
