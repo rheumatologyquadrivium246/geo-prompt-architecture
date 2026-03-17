@@ -100,13 +100,13 @@ The same GEO methodology should produce very different prompts for different bus
 
 `Trip.com` is best understood as a `consumer online travel agency / travel marketplace`, not a business-travel management platform and not a content publisher.
 
-That means the prompt set should lean toward:
+That means the prompt set should lean toward travel-planning discovery, OTA comparisons, and branded trust questions.
 
-- leisure and cross-border trip planning
-- hotel, flight, train, attraction, and package discovery
-- booking trust, price, flexibility, and support
-- comparisons against other OTA and travel-booking brands
-- branded prompts around reliability, customer support, refunds, and app / site fit
+| Layer | Topic Focus | Example Prompts |
+|---|---|---|
+| Non-brand discovery | leisure and cross-border trip planning; hotel, flight, train, attraction, and package discovery | `What is the best website to book hotels and flights for an international trip?`<br>`What are the best travel booking apps for international travelers?` |
+| Competitor comparison | comparisons against other OTA and travel-booking brands | `Trip.com vs Booking.com for hotels in Asia`<br>`What are the best alternatives to Booking.com for flights and hotels?` |
+| Brand defense | reliability, customer support, refunds, app / site fit, and booking confidence | `Is Trip.com reliable for booking international flights and hotels?`<br>`How does Trip.com handle cancellations, refunds, and itinerary changes?` |
 
 See [trip-com-consumer-travel-marketplace.md](/Users/timlin/Downloads/knowledge/projects/geo-prompt-architecture-repo/examples/trip-com-consumer-travel-marketplace.md).
 
@@ -114,14 +114,13 @@ See [trip-com-consumer-travel-marketplace.md](/Users/timlin/Downloads/knowledge/
 
 `movinghead.net` is best understood as a `B2B stage-lighting manufacturer / supplier`, not a consumer fashion brand and not a software platform.
 
-That means the prompt set should lean toward:
+That means the prompt set should lean toward technical category discovery, supplier comparison, and procurement-trust prompts.
 
-- product category discovery around moving-head lighting
-- technical and procurement questions
-- venue and event use cases
-- manufacturer trust and certification signals
-- distributor / supplier comparison
-- brand-defense prompts around specs, lead time, support, and OEM fit
+| Layer | Topic Focus | Example Prompts |
+|---|---|---|
+| Non-brand discovery | product category discovery around moving-head lighting; technical and venue use cases | `What is the best moving head light for indoor concert stages?`<br>`How do I choose between beam, wash, and spot moving head lights for live events?` |
+| Competitor comparison | manufacturer trust, distributor / supplier comparison, OEM and export sourcing | `Best alternatives to Clay Paky or Martin for affordable moving head fixtures`<br>`What are the top moving head light manufacturers in China for export buyers?` |
+| Brand defense | specs, lead time, support, certifications, and OEM fit | `Is movinghead.net a reliable moving head light manufacturer?`<br>`Does movinghead.net support OEM or custom stage-lighting production?` |
 
 See [movinghead-stage-lighting.md](/Users/timlin/Downloads/knowledge/projects/geo-prompt-architecture-repo/examples/movinghead-stage-lighting.md).
 
