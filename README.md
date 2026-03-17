@@ -1,0 +1,239 @@
+# GEO Prompt Architecture
+
+Generate the most suitable GEO monitoring prompts for each client’s business, so monitoring can lead to sharper optimization.
+
+`GEO Prompt Architecture` is an open-source skill and repo for GEO teams, agencies, and operators who need more than a flat prompt list. It turns a client brief into a prompt operating system across discovery, comparison, and brand-defense layers, then helps feed monitoring results back into content and asset decisions.
+
+## The Problem
+
+Most GEO prompt generation is still too generic.
+
+Teams often produce:
+
+- too many branded prompts
+- too few real discovery prompts
+- weak competitor comparison coverage
+- prompts that do not match the client’s business model
+- monitoring sets that are hard to act on later
+
+That creates a false sense of AI visibility. A brand may look visible on branded prompts while still failing to enter the non-brand answer spaces that drive growth.
+
+## The Promise
+
+This repo helps teams produce prompts that are:
+
+- better matched to the client’s real business
+- better matched to how people ask AI tools questions
+- better structured for long-term monitoring
+- better connected to downstream optimization
+
+In plain English: it helps you create prompts that are worth monitoring and worth optimizing against.
+
+## What This Repo Includes
+
+- a root `SKILL.md` for Codex-style use
+- input and output `schemas/` for productizing prompt generation
+- `references/` for prompt architecture, vertical playbooks, scoring, and reverse optimization
+- `examples/` that show how prompt strategy changes by business type
+- `agents/openai.yaml` metadata for skill UI usage
+
+## Core Operating Model
+
+This repo treats prompt generation as a system, not a keyword dump.
+
+### 1. Non-brand discovery
+
+Use prompts that test whether the client can enter new answer spaces before users know the brand.
+
+### 2. Competitor comparison
+
+Use prompts that test whether the client appears when buyers compare options, alternatives, and routes.
+
+### 3. Brand defense
+
+Use prompts that test how AI describes the brand in branded, decision-stage, and trust-sensitive queries.
+
+Recommended default mix:
+
+- `60-70%` non-brand discovery
+- `20-25%` competitor comparison
+- `10-20%` brand defense
+
+## Why This Matters For GEO
+
+Prompt architecture shapes everything downstream:
+
+- what you monitor
+- what you learn from AI answers
+- what content you create next
+- which competitor gaps you actually see
+- how accurately you report AI visibility to clients
+
+If the prompt layer is weak, the reporting layer and optimization layer will also be weak.
+
+## Designed For Business-Model Fit
+
+This repo assumes prompt systems should change based on business model.
+
+It is built to support:
+
+- ecommerce and DTC brands
+- SaaS and software products
+- services and consultancies
+- marketplace and aggregator businesses
+- B2B manufacturers and product suppliers
+- content and media properties
+
+That is why the repo includes structured schemas, vertical playbooks, examples, and a scoring model instead of only one default prompt.
+
+## Representative Examples
+
+The same GEO methodology should produce very different prompts for different businesses.
+
+### Trip.com
+
+`Trip.com` is best understood as a `consumer online travel agency / travel marketplace`, not a business-travel management platform and not a content publisher.
+
+That means the prompt set should lean toward:
+
+- leisure and cross-border trip planning
+- hotel, flight, train, attraction, and package discovery
+- booking trust, price, flexibility, and support
+- comparisons against other OTA and travel-booking brands
+- branded prompts around reliability, customer support, refunds, and app / site fit
+
+See [trip-com-consumer-travel-marketplace.md](/Users/timlin/Downloads/knowledge/projects/geo-prompt-architecture-repo/examples/trip-com-consumer-travel-marketplace.md).
+
+### movinghead.net
+
+`movinghead.net` is best understood as a `B2B stage-lighting manufacturer / supplier`, not a consumer fashion brand and not a software platform.
+
+That means the prompt set should lean toward:
+
+- product category discovery around moving-head lighting
+- technical and procurement questions
+- venue and event use cases
+- manufacturer trust and certification signals
+- distributor / supplier comparison
+- brand-defense prompts around specs, lead time, support, and OEM fit
+
+See [movinghead-stage-lighting.md](/Users/timlin/Downloads/knowledge/projects/geo-prompt-architecture-repo/examples/movinghead-stage-lighting.md).
+
+## What Makes This Repo More Useful Than A Generic Prompt List
+
+### Structured inputs
+
+`schemas/client-brief.schema.json` makes it easier to standardize onboarding inputs across clients.
+
+### Structured outputs
+
+`schemas/prompt-set-output.schema.json` and `schemas/prompt-scorecard.schema.json` make it easier to connect prompt generation to products, dashboards, and QA workflows.
+
+### Vertical playbooks
+
+`references/vertical-templates.md` explains how prompt architecture changes by business type.
+
+### Reverse optimization
+
+`references/reverse-optimization.md` helps turn AI answer losses into content, asset, evidence, and prompt-set changes.
+
+### Prompt scoring
+
+`references/scoring-model.md` helps teams judge whether a prompt set is actually balanced, useful, and monitor-worthy.
+
+## Typical Workflow
+
+1. Capture the client brief in a standard schema
+2. Reconstruct the business model, market, audience, product lines, and competitors
+3. Generate prompts across discovery, comparison, and brand-defense layers
+4. Map prompts to funnel stages
+5. Score the prompt set for coverage and quality
+6. Monitor AI answers
+7. Feed answer losses back into content and prompt optimization
+
+## Example Skill Usage
+
+```text
+Use $geo-prompt-architecture to generate GEO monitoring prompts for this client.
+```
+
+```text
+Use $geo-prompt-architecture to review this prompt set and rebalance brand vs non-brand prompts.
+```
+
+```text
+Use $geo-prompt-architecture to turn these AI visibility monitoring results into prompt and content recommendations.
+```
+
+## Repository Structure
+
+```text
+.
+├── SKILL.md
+├── README.md
+├── LICENSE
+├── agents/
+│   └── openai.yaml
+├── examples/
+│   ├── trip-com-consumer-travel-marketplace.md
+│   └── movinghead-stage-lighting.md
+├── references/
+│   ├── prompt-framework.md
+│   ├── reverse-optimization.md
+│   ├── scoring-model.md
+│   └── vertical-templates.md
+└── schemas/
+    ├── client-brief.schema.json
+    ├── prompt-scorecard.schema.json
+    └── prompt-set-output.schema.json
+```
+
+## Install
+
+Copy this repo into your local Codex skills directory as:
+
+```text
+~/.codex/skills/geo-prompt-architecture
+```
+
+Or use it as a public repo and package it through your own skill publishing workflow.
+
+## Good Outputs You Should Expect
+
+A strong run of this repo should produce:
+
+- prompts grouped by product line
+- prompts grouped by layer and funnel
+- fewer low-value branded prompts
+- stronger competitor comparison coverage
+- more business-model fit
+- clearer monitoring priorities
+- clearer recommendations when a brand loses in AI answers
+
+## Where This Can Extend Next
+
+This repo is already moving toward a `GEO prompt operating system`.
+
+Natural next steps:
+
+- richer vertical packs by business model
+- automated prompt-set scoring scripts
+- benchmark prompt libraries by industry
+- tighter JSON outputs for product workflows
+- stronger reverse-optimization playbooks by AI surface
+
+## Open Source
+
+This repo is open source so GEO teams can:
+
+- use it internally
+- adapt it to client onboarding
+- connect it to a GEO product workflow
+- customize prompt logic by business model
+- improve how prompt monitoring drives optimization
+
+If your team helps clients create the most suitable prompts for their business, this repo gives you a more defensible starting point than a generic keyword sheet.
+
+## License
+
+MIT
