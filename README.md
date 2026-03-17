@@ -4,6 +4,10 @@ Generate the most suitable GEO monitoring prompts for each client’s business, 
 
 `GEO Prompt Architecture` is an open-source skill and repo for GEO teams, agencies, and operators who need more than a flat prompt list. It turns a client brief into a prompt operating system across discovery, comparison, and brand-defense layers, then helps feed monitoring results back into content and asset decisions.
 
+Maintained by [Dageno.ai](https://dageno.ai), a GEO-focused platform for turning AI visibility signals into actionable marketing workflows.
+
+![GEO Prompt Architecture hero](assets/social-preview.png)
+
 ## The Problem
 
 Most GEO prompt generation is still too generic.
@@ -239,6 +243,8 @@ This repo is open source so GEO teams can:
 - improve how prompt monitoring drives optimization
 
 If your team helps clients create the most suitable prompts for their business, this repo gives you a more defensible starting point than a generic keyword sheet.
+
+If you want this logic inside a broader GEO workflow, including monitoring, analysis, and optimization, visit [Dageno.ai](https://dageno.ai).
 
 ## License
 
